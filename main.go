@@ -13,7 +13,6 @@ func main() {
 
 	//1.加载配置文件.
 	config.LoadConfiguration()
-	return
 
 	//2.加载配置log.
 
@@ -28,8 +27,14 @@ func main() {
 	//6.配置定时任务.
 
 	//7.启动系统.
-	router.Run(":80")
+	startupSystem(router)
 
+}
+
+func startupSystem(router *gin.Engine) {
+	port := ":80"
+	log.Println("@@@Starting the system with port:", port)
+	router.Run(port)
 }
 
 func initDB() {
@@ -42,10 +47,12 @@ func initDB() {
 }
 
 func setRouters() *gin.Engine {
+	log.Println("@@@Start setting routers......")
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	setBasicRouterGroup(router)
-	//setNatsRouterGroup(router)
+	setNatsRouterGroup(router)
+	log.Println("@@@Finish setting routers")
 	return router
 }
 
@@ -59,7 +66,7 @@ func setBasicRouterGroup(router *gin.Engine) {
 func setNatsRouterGroup(router *gin.Engine) {
 	routerGroup := router.Group("/nats")
 	{
-		routerGroup.GET("/test", nats.NatsTest)
+		routerGroup.GET("/NatsPublisher", nats.NatsPublisher)
 		routerGroup.GET("/NatsAsyncConsumer", nats.NatsAsyncConsumer)
 	}
 }

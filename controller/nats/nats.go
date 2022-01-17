@@ -10,16 +10,17 @@ import (
 
 const natsURL = "nats://42.192.156.142:4222"
 
-// NatsTest localhost/nats/test
-func NatsTest(context *gin.Context) {
-	log.Println("@@@natsTest is running......")
-	testNats()
+// NatsPublisher localhost/nats/NatsPublisher
+// Should start the consumer first through the REST API below.
+func NatsPublisher(context *gin.Context) {
+	log.Println("@@@NatsPublisher is running......")
+	testPublisher()
 	context.JSON(http.StatusOK, gin.H{"status": "U r ok"})
 }
 
-func testNats() {
+func testPublisher() {
 	// Connect to a server
-	log.Println("@@@Connecting to nats server......")
+	log.Println("@@@Publisher connecting to nats server......")
 	//nc, _ := nats.Connect(nats.DefaultURL)
 	nc, err := nats.Connect(natsURL)
 	if err != nil {
@@ -27,7 +28,7 @@ func testNats() {
 	}
 
 	// Simple Publisher
-	log.Println("@@@Publishing to nats server......")
+	log.Println("@@@Publishing message to nats server......")
 	nc.Publish("foo", []byte("Hello World"))
 
 	// Simple Async Subscriber
@@ -74,9 +75,9 @@ func testNats() {
 	nc.Close()
 }
 
-// NatsTest2 localhost/nats/NatsAsyncConsumer
+// NatsAsyncConsumer localhost/nats/NatsAsyncConsumer
 func NatsAsyncConsumer(context *gin.Context) {
-	log.Println("@@@natsTest2 is running......")
+	log.Println("@@@NatsAsyncConsumer is running......")
 	natsConsumer()
 	context.JSON(http.StatusOK, gin.H{"status": "U r ok"})
 }

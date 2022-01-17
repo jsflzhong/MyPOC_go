@@ -19,13 +19,15 @@ var DB *gorm.DB
 		所以需要手动调用close归还连接，即使不用Rows也得调用rows.Close()，否则可能导致后续使用出错，如下的用法是错误的
 */
 func InitMysql() (*gorm.DB, error) {
-	fmt.Println("@@@Init Mysql......")
+	log.Println("@@@Init Mysql......")
 	db, err := gorm.Open(config.GetConfig().Mysql.DriverName, buildDBString())
 	if err == nil {
 		DB = db
 		//db.LogMode(true)
 		db.SingularTable(true)
+		log.Println("@@@Create Mysql tables......")
 		CreateTables()
+		log.Println("@@@Finish init Mysql")
 		return db, err
 	}
 	return nil, err
