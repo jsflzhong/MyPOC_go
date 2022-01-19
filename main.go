@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"goPOC/config"
 	"goPOC/controller/basic"
+	"goPOC/controller/kafka/confluent"
 	"goPOC/controller/nats"
 	"goPOC/model/db"
 	"log"
@@ -19,7 +20,7 @@ func main() {
 	//3.加载yaml配置文件进全局结构体:system.Configuration
 
 	//4.创建DB连接,表,索引.
-	initDB()
+	//initDB()
 
 	//5.配置routers.
 	router := setRouters()
@@ -52,6 +53,7 @@ func setRouters() *gin.Engine {
 	router := gin.Default()
 	setBasicRouterGroup(router)
 	setNatsRouterGroup(router)
+	setKafkaRouterGroup(router)
 	log.Println("@@@Finish setting routers")
 	return router
 }
@@ -68,5 +70,13 @@ func setNatsRouterGroup(router *gin.Engine) {
 	{
 		routerGroup.GET("/NatsPublisher", nats.NatsPublisher)
 		routerGroup.GET("/NatsAsyncConsumer", nats.NatsAsyncConsumer)
+	}
+}
+
+func setKafkaRouterGroup(router *gin.Engine) {
+	routerGroup := router.Group("/kafka")
+	{
+		routerGroup.GET("/ConfluentProducer", confluent.ConfluentProducer)
+		routerGroup.GET("/ConfluentConsumer", confluent.ConfluentConsumer)
 	}
 }

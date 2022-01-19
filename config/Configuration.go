@@ -16,6 +16,14 @@ type Configuration struct {
 		Pswd       string `yaml:"mysql_pswd"`
 		DbName     string `yaml:"mysql_dbName"`
 	} `yaml:"mysql"`
+
+	Kafka struct {
+		Broker      string `yaml:"broker"`
+		UserName    string `yaml:"user_name"`
+		Pswd        string `yaml:"password"`
+		GroupId     string `yaml:"group_id"`
+		TopicPrefix string `yaml:"topic_prefix"`
+	} `yaml:"kafka"`
 }
 
 var configuration *Configuration
@@ -36,7 +44,9 @@ func LoadConfiguration() error {
 	if config.Mysql.Pswd == "" {
 		config.Mysql.Pswd = os.Getenv("mysqlPSWD")
 	}
-
+	if config.Kafka.Pswd == "" {
+		config.Kafka.Pswd = os.Getenv("kafkaPSWD")
+	}
 	configuration = &config
 	return err
 }

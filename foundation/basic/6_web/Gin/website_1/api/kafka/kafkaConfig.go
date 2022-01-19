@@ -20,7 +20,7 @@ func GetUsername() string {
 
 func GetPassword() string {
 	//return  os.Getenv("CLOUDKARAFKA_PASSWORD")
-	return "2VuBHVpIxTQV7_olp-A_scDcwMfKRiB1"
+	return ""
 }
 
 func GetGroupId() string {

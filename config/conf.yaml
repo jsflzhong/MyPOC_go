@@ -4,3 +4,11 @@ mysql:
   mysql_username : jsflzhong_1
   mysql_pswd :
   mysql_dbName : jsflzhong_1
+
+kafka:
+    broker : sulky-01.srvs.cloudkafka.com:9094, sulky-02.srvs.cloudkafka.com:9094, sulky-03.srvs.cloudkafka.com:9094
+    user_name : ptxqyt3u
+    password :
+    group_id : cloudkarafka-example
+    topic_prefix : ptxqyt3u-
+
