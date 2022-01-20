@@ -4,7 +4,7 @@
 package model
 
 import (
-	"awesomeProject/src/com.jsflzhong/6_web/Gin/website_1/common"
+	"goPOC/foundation/basic/6_web/Gin/website_1/common"
 	"log"
 )
 
