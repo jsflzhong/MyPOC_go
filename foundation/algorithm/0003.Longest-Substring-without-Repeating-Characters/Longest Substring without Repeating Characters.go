@@ -1,4 +1,4 @@
-package _03_Longest_Substring_without_Repeating_Characters
+package _003_Longest_Substring_without_Repeating_Characters
 
 // Input: "abccbabade"
 // Output: 4
