@@ -10,9 +10,6 @@ import "fmt"
 // 一直找到右边最大的符合上述条件的位置才是对的. 当然同时要判断一直到最右边的元素都是符合的的话, 再下一位就会数组越界, 所以要判断一下,
 // 同时mid还不能是最后一位, 所以要判断下一位是不是尾巴了, 如果是, 就不要再右移了.
 func MedianOfTwoSortedArrays(a1 []int, a2 []int) int {
-	//if len(a1) > len(a2) {
-	//	MedianOfTwoSortedArrays(a2, a1)
-	//}
 	mid1, mid2, result := len(a1)>>1, len(a2)>>1, -1
 	for a1[mid1-1] > a2[mid2] {
 		mid1--
@@ -26,13 +23,6 @@ func MedianOfTwoSortedArrays(a1 []int, a2 []int) int {
 			mid2++
 		}
 	}
-
-	//for a2[mid2-1] > a1[mid1] {
-	//	mid2--
-	//}
-	//for a2[mid2-1] <= a1[mid1-1] {
-	//	mid2++
-	//}
 	fmt.Printf("@@@The mid1=%d, mid2=%d, mid1-1=%d, mid2-1=%d \n", mid1, mid2, a1[mid1-1], a2[mid2-1])
 	if (len(a1)+len(a2))%2 == 0 {
 		result = (max(a1[mid1-1], a2[mid2-1]) + min(a1[mid1], a2[mid2])) / 2
@@ -40,7 +30,6 @@ func MedianOfTwoSortedArrays(a1 []int, a2 []int) int {
 	} else {
 		result = max(a1[mid1-1], a2[mid2-1])
 	}
-
 	return result
 }
 
