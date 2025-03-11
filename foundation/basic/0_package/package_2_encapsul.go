@@ -49,18 +49,13 @@ func NewPeople() *people {
 	Go 允许方法绑定到 值类型 和 指针类型，两者区别如下：
 
 	（1）绑定到值类型
-	go
-	Copy
-	Edit
 	func (p people) GetAge() int {
 		return p.age
 	}
 	p 是 people 类型的一个拷贝，不会影响原来的对象。
 	如果 p.age 在方法里被修改，外部的 people 实例不会变。
+
 	（2）绑定到指针类型
-	go
-	Copy
-	Edit
 	func (p *people) SetAge(age int) {
 		p.age = age
 	}
