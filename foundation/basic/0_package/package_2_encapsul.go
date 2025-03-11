@@ -43,7 +43,30 @@ func NewPeople() *people {
 模拟一个Getter
 用"接收器"绑定了上面的type. "接收器"的概念,会在后面讲到.
 注意: 首字母必须大写, 否则无法被其他包使用.
-*/
+
+[MC]
+	为什么要用 *people 而不是 people？
+	Go 允许方法绑定到 值类型 和 指针类型，两者区别如下：
+
+	（1）绑定到值类型
+	go
+	Copy
+	Edit
+	func (p people) GetAge() int {
+		return p.age
+	}
+	p 是 people 类型的一个拷贝，不会影响原来的对象。
+	如果 p.age 在方法里被修改，外部的 people 实例不会变。
+	（2）绑定到指针类型
+	go
+	Copy
+	Edit
+	func (p *people) SetAge(age int) {
+		p.age = age
+	}
+	p 是 people 的 指针，它直接指向原对象。
+	方法里修改 p.age，外部 people 的 age 也会改变。
+	*/
 func (p *people) GetAge() int {
 	//注意,由于字段首小,所以只能在本包中这样调用.
 	return p.age
