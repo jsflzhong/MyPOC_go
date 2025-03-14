@@ -18,6 +18,7 @@ Go语言希望开发者将错误处理视为正常开发"必须实现的环节"�
 同时，Go语言使用"返回值返回错误的机制"，也能大幅降低编译器、运行时处理错误的复杂度，让开发者真正地掌握错误的处理。
 
 例1:
+
 	net.Dial() 是Go语言系统包 net 即中的一个函数，一般用于创建一个 Socket 连接。
 	net.Dial 拥有两个返回值，即 Conn 和 error，这个函数是阻塞的，
 	因此在 Socket 操作后，会返回 Conn 连接对象和 error，如果发生错误，error 会告知错误的类型，Conn 会返回空
@@ -27,27 +28,27 @@ Go语言希望开发者将错误处理视为正常开发"必须实现的环节"�
 	}
 
 例2:
+
 	在 io 包中的 Writer 接口也拥有错误返回，代码如下：
 	type Writer interface {
 		Write(p []byte) (n int, err error) //第二个返回值的类型是:error接口(注意小写)
 	}
 
 例3:
+
 	io 包中还有 Closer 接口，只有一个错误返回，代码如下：
 	type Closer interface {
 		Close() error //还是error接口
 	}
 
 "error"接口:
+
 	这个内置接口,是 Go 系统声明的接口类型，代码如下：
 	type error interface {
 		Error() string
 	}
 	注意,Go中不叫Exception, 叫Error, 中文译为"错误".
-
-
-
- */
+*/
 func main() {
 	//使用error方式一: 自定义结构体实现error. 模仿errors包的实现原理: 自定义new方法 + 自定义结构体去实现上述error接口里的Error方法.
 	selfDefinedError("@@@test")
@@ -62,9 +63,9 @@ func main() {
 
 /*
 使用error方式一: 自定义error. 模仿errors包的实现原理: 自定义new方法 + 自定义结构体去实现上述error接口里的Error方法.
- */
+*/
 func selfDefinedError(text string) {
-	err := New(text)
+	err := New(text) //Go 语言没有全局 New 方法. 这个New是在下面定义的
 	if err != nil {
 		//上面被调用的New方法,肯定会返回error,所以这里肯定会被执行.
 		fmt.Println("error is not nil:", err)
@@ -74,9 +75,9 @@ func selfDefinedError(text string) {
 }
 
 /*
-	根据传入的字符串, 返回自创建的error对象.
-	注意: 方法返回的是接口:error, 类似多态: 所有实现这个接口的结构体,例如下面的errorString, 都能在这里被返回.
- */
+根据传入的字符串, 返回自创建的error对象.
+注意: 方法返回的是接口:error, 类似多态: 所有实现这个接口的结构体,例如下面的errorString, 都能在这里被返回.
+*/
 func New(text string) error {
 	//返回的是包含了被text初始化字段s的自定义结构体:errorString.
 	//由于errorString这个结构体在下面实现了error接口(的Error方法),所以这里可以用多态返回.s
@@ -84,41 +85,46 @@ func New(text string) error {
 }
 
 /*
-	创建结构体: 用来描述错误字符串
- */
+创建结构体: 用来描述错误字符串
+*/
 type errorString struct {
 	s string
 }
 
 /*
-	用上述结构体来"errorString",来实现error接口的Error方法. 返回发生何种错误.
-	作用:可以在其他方法(例如上面的New())中,利用接口和多态返回这个结构体.
- */
+用上述结构体"errorString",来实现error接口的Error方法. 返回发生何种错误.
+作用:可以在其他方法(例如上面的New())中,利用接口和多态返回这个结构体.
+*/
 func (e *errorString) Error() string {
 	fmt.Println("@@@errorString's Error is running...")
 	return e.s //e.s表示取结构体e的字段s.
 }
 
-/**
+/*
+*
 使用error方式二: 使用Go语言内置的errors包来创建error.
 Go语言有个叫做:errors 的包,内置了对New函数的定义, 类似上面自己的实现.
 Go语言的 errors 中对 New 的定义非常简单，类似上面自己的实现, 代码如下：
 
 // 创建错误对象
-func New(text string) error {
-    return &errorString{text}
-}
-// 错误字符串
-type errorString 3_struct {
-    s string
-}
-// 返回发生何种错误
-func (e *errorString) Error() string {
-    return e.s
-}
 
- */
-func useDefaultError()  {
+	func New(text string) error {
+	    return &errorString{text}
+	}
+
+// 错误字符串
+
+	type errorString 3_struct {
+	    s string
+	}
+
+// 返回发生何种错误
+
+	func (e *errorString) Error() string {
+	    return e.s
+	}
+*/
+func useDefaultError() {
 	i, err := div(1, 0)
 	if err != nil {
 		fmt.Println("@@@divisor is zero!")
@@ -130,9 +136,10 @@ func useDefaultError()  {
 // 定义除数为0的错误
 var errDivisionByZero = errors.New("division by zero")
 
-/**
+/*
+*
 在代码中使用错误定义: 定义一个会返回error的函数
- */
+*/
 func div(dividend, divisor int) (int, error) {
 	// 判断除数为0的情况并返回
 	if divisor == 0 {
@@ -144,30 +151,27 @@ func div(dividend, divisor int) (int, error) {
 
 /*
 自定义一个含有多个字段的结构体
- */
+*/
 type ParseError struct {
 	Filename string // 文件名
 	Line     int    // 行号
 }
+
 /*
 用上述自定义结构体, 来实现error接口，返回错误不止一个错误描述, 因为ParseError这个结构体中定义了多个字段.
- */
+*/
 func (e *ParseError) Error() string {
 	return fmt.Sprintf("@@@selfDeifnedError(),%s:%d", e.Filename, e.Line)
 }
 
 /*
 定义一个函数,可以返回不止一个错误信息
- */
+*/
 func newParseError(filename string, line int) error {
 	return &ParseError{filename, line}
 }
 
-func testMultiFieldsSelfDefineError()  {
+func testMultiFieldsSelfDefineError() {
 	err := newParseError("@@@testMultiFieldsSelfDefineError", 1)
-	fmt.Println("@@@error:",err.Error())
+	fmt.Println("@@@error:", err.Error())
 }
-
-
-
-
