@@ -21,17 +21,17 @@ func test1_simleServer() {
 	log.Fatal(http.ListenAndServe("localhost:8080", nil))
 }
 
-func simleServer(w http.ResponseWriter, r *http.Request)  {
+func simleServer(w http.ResponseWriter, r *http.Request) {
 	//返回给FE, 并显示在浏览器上.
 	fmt.Fprint(w, "@@@")
 }
 
-func test2_readHtml()  {
+func test2_readHtml() {
 	http.HandleFunc("/", readHtml)
 	log.Fatal(http.ListenAndServe("localhost:8080", nil))
 }
 
-//todo path error
+// todo path error
 func readHtml(w http.ResponseWriter, r *http.Request) {
 	content, _ := ioutil.ReadFile("index.html")
 	w.Write(content)

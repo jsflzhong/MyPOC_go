@@ -7,7 +7,7 @@ import "fmt"
 
 Go语言改进了 switch 的语法设计，case 与 case 之间是独立的代码块，不需要通过 break 语句跳出当前 case 代码块以避免执行
 
- */
+*/
 func main() {
 	testSimpelBreak()
 
@@ -21,7 +21,7 @@ func main() {
 /*
 在Go语言中 case 是一个独立的代码块，执行完毕后不会像C语言那样紧接着执行下一个 case，等于是默认在每个case中都有个break.
 但是为了兼容一些移植代码，依然加入了 fallthrough 关键字来实现:无默认break的功能.
- */
+*/
 func testFallthrough() {
 	var s = "hello"
 	switch {
@@ -35,7 +35,7 @@ func testFallthrough() {
 
 /*
 case后不仅仅只可以添加常量，还可以添加表达式.
- */
+*/
 func testExpression() {
 	var r int = 11
 
@@ -47,7 +47,7 @@ func testExpression() {
 
 /**
 当出现多个 case 要放在一起的时候，可以在常量中用逗号分开, 等同于"或".
- */
+*/
 func testMultiConstant() {
 	var a = "mum"
 	switch a {
@@ -58,7 +58,7 @@ func testMultiConstant() {
 
 /*
 Go语言改进了 switch 的语法设计，case 与 case 之间是独立的代码块，不需要通过 break 语句跳出当前 case 代码块以避免执行
- */
+*/
 func testSimpelBreak() {
 	var a = "hello"
 	switch a {

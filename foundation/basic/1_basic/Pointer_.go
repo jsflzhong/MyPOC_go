@@ -5,7 +5,7 @@ import "fmt"
 /**
 演示拿变量的内存地址.
 */
-func main() {
+func main10() {
 	//用指针拿内存地址(而不是值)
 	getAddressWithPointer()
 

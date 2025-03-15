@@ -7,7 +7,7 @@ import (
 	"reflect"
 )
 
-//全局存放通过命令行输入的参数的map.
+// 全局存放通过命令行输入的参数的map.
 var arguments = make(map[string]string)
 
 func main() {
@@ -37,6 +37,7 @@ func getInputArguments() {
 方式二:用flag库获取输入参数.(推荐)
 
 在Linux中的输入参数的方式:
+
 	在启动命令的后面,有4种方式，效果是相同的
 	-word opt
 	-word=opt
@@ -44,9 +45,10 @@ func getInputArguments() {
 	--word=opt
 
 在goLand中的输入参数的方式:
+
 	在启动配置--Program arguments中:
 	输入:-username=12
- */
+*/
 func useFlag2GetArguments() {
 
 	//API1:flag.String(),返回的值指针.
@@ -65,8 +67,9 @@ func useFlag2GetArguments() {
 
 /*
 方式一.不推荐
+
 	这种自己分割的方式比较麻烦. 推荐用下面的flag库的成熟方式.
- */
+*/
 func PrintArgs1(args ...interface{}) {
 	//测试结果:
 	//@@@获取启动传参: 0  = C:\Users\michael.cui\AppData\Local\Temp\___go_build_ReadConfig_2_go.exe 类型: string

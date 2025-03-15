@@ -4,8 +4,8 @@
 package model
 
 import (
-	"goPOC/foundation/basic/6_web/Gin/website_1/common"
 	"log"
+	"mcgo/foundation/basic/6_web/Gin/website_1/common"
 )
 
 type User struct {
@@ -18,7 +18,7 @@ type User struct {
 	Age int `json:"Age,string,omitempty" form:"Age`
 }
 
-//抽取SQL, 便于维护和DBA评审
+// 抽取SQL, 便于维护和DBA评审
 const getUserById string = "select Id,User_name,Age,Password from user_t where Id = ?"
 const insertUser string = "INSERT INTO user_t(User_name, Age,Password) VALUES (?, ?, ?)"
 const udpateUser string = "UPDATE user_t SET User_name=?, Age=?, Password=? where id=?"

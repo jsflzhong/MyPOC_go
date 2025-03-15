@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func main() {
+func main2() {
 	//int to str
 	i := 30
 	str := strconv.Itoa(i)
@@ -16,12 +16,11 @@ func main() {
 	//注意这里必须加一个返回值.
 	i2, err := strconv.Atoi(str2)
 	if err != nil {
-		fmt.Printf("%v 转换失败",str2)
+		fmt.Printf("%v 转换失败", str2)
 	} else {
 		fmt.Printf("type:%T, value:%#v\n", i2, i2)
 	}
 }
-
 
 //其他类型转字符串
 /*

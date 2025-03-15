@@ -6,8 +6,10 @@ import (
 	"time"
 )
 
-/**
+/*
+*
 关键语法:
+
 	1.go 并发执行
 	2.chan  两种操作符, chan <- 和 <- chan 分别对应往通道里放, 和从通道往外拿.
 
@@ -15,11 +17,11 @@ https://www.runoob.com/go/go-concurrent.html
 Go 语言支持并发，我们只需要通过 go 关键字来开启 goroutine 即可。
 goroutine 是轻量级线程，goroutine 的调度是由 Golang 运行时进行管理的。
 goroutine 语法格式：
+
 	go 函数名( 参数列表 )
 
 Go 允许使用 go 语句开启一个新的运行期线程， 即 goroutine，以一个不同的、新创建的 goroutine 来执行一个函数。
 同一个程序中的所有 goroutine 共享同一个地址空间。
-
 */
 func main() {
 	// 实例化一个字符串类型的通道
@@ -32,8 +34,8 @@ func main() {
 	consumer(channel)
 }
 
-//数据生产者
-//生产数据的函数，传入一个标记类型的字符串及一个只能写入的通道。
+// 数据生产者
+// 生产数据的函数，传入一个标记类型的字符串及一个只能写入的通道。
 func producer(header string, channel chan<- string) {
 	//无限循环, 不停地生产数据
 	for {
@@ -47,7 +49,7 @@ func producer(header string, channel chan<- string) {
 }
 
 // 数据消费者
-//消费数据的函数，传入一个只能写入的通道。
+// 消费数据的函数，传入一个只能写入的通道。
 func consumer(channel <-chan string) { //todo <-chan --通道
 	// 不停地获取数据
 	for {

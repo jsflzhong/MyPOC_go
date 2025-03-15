@@ -19,7 +19,7 @@ valuetype 是键对应的值类型。
 
 在声明的时候不需要知道 map 的长度，因为 map 是可以动态增长的，未初始化的 map 的值是 nil，使用函数 len() 可以获取 map 中 pair 的数目。
 */
-func main() {
+func main9() {
 	//1.创建map
 	createMap()
 
@@ -51,7 +51,7 @@ Store 表示存储，Load 表示获取，Delete 表示删除。
 
 使用 Range 配合一个回调函数进行遍历操作，通过回调函数返回内部遍历出来的值，
 Range 参数中回调函数的返回值在需要继续迭代遍历时，返回 true，终止迭代遍历时，返回 false。
- */
+*/
 func threadSafeMap() {
 	var scene sync.Map
 
@@ -153,7 +153,7 @@ func iterateMap() {
 }
 
 /*
-	创建map和简单赋值元素的两种方式.
+创建map和简单赋值元素的两种方式.
 */
 func createMap() {
 	var mapLit map[string]int

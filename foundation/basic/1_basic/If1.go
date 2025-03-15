@@ -9,9 +9,9 @@ import "fmt"
 
 结果:
 111
- */
-func main() {
-	a := 1;
+*/
+func main7() {
+	a := 1
 	if a == 1 {
 		fmt.Println("111")
 	} else {

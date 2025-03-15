@@ -20,7 +20,7 @@ type 类型名 3_struct{}可以理解为将 3_struct{} 结构体定义为类型�
 
 Go语言可以通过多种方式实例化结构体，根据实际需要可以选用不同的写法。
 */
-func main() {
+func main2() {
 	//初始化结构体的三种方式.
 	initiateStruct()
 
@@ -37,12 +37,14 @@ func main() {
 	GenJsonData()
 }
 
-/**
+/*
+*
 模拟构造函数.
 Go语言中的结构体没有构造函数.
 注意: 返回值是指针.无论内部用&还是用new来实例化结构体.
 
 结果:
+
 	构造函数返回的类型是:*main.People,字段name的值是:李四
 */
 func callConstructFunction() {
@@ -56,13 +58,15 @@ func newPeoplePointer(name string) *People {
 	}
 }
 
-/**
+/*
+*
 匿名结构体, 初始化和赋值.
 
 匿名结构体的初始化写法由结构体定义和键值对初始化两部分组成，
 结构体定义时没有结构体类型名，只有字段和类型定义，
 键值对初始化部分由可选的多个键值对组成，
 如下格式所示：
+
 	ins := 3_struct {
 		// 匿名结构体字段定义
 		字段1 字段类型1
@@ -76,6 +80,7 @@ func newPeoplePointer(name string) *People {
 	}
 
 注意:
+
 	键值对初始化部分是可选的，不初始化成员时，匿名结构体的格式变为：
 	ins := 3_struct {
 		字段1 字段类型1
@@ -84,8 +89,8 @@ func newPeoplePointer(name string) *People {
 	}
 
 结果:
-	传入的匿名结构体的类型是:*3_struct { id int; name string }, 内部的字段是,id:11,name:张三
 
+	传入的匿名结构体的类型是:*3_struct { id int; name string }, 内部的字段是,id:11,name:张三
 */
 func anonymousStruct() {
 	//实例化一个匿名结构体, 然后传入下面的函数.
@@ -101,7 +106,7 @@ func anonymousStruct() {
 	withParamOfAnonymousStruct(&student)
 }
 
-//定义一个函数, 参数为一个"匿名结构体"
+// 定义一个函数, 参数为一个"匿名结构体"
 func withParamOfAnonymousStruct(student *struct { //注意,参数是现定义的一个匿名结构体,占用多行
 	id   int
 	name string
@@ -144,10 +149,12 @@ func initiateStruct() {
 	addressInitiate()
 }
 
-/**
+/*
+*
 结构体实例化的方式一: 基本的实例化形式.用: var name T 即可.  T是自定义的结构体名.
 
 结果:
+
 	基本的实例化形式,类型:main.simple1,字段id:1,字段name:name
 */
 func basicInstantiate() {
@@ -191,12 +198,15 @@ func pointerInstantiate() {
 结构体实例化的方式三:用&取地址的方式, 创建指针类型的结构体.
 该方式, 等同于用new的方式.
 格式:
+
 	ins := &T{}  //记得有大括号
 
 结果:
+
 	结构体实例化的方式三:用&取地址的方式, 创建指针类型的结构体,类型:main.simple1,字段id:1,字段name:name, 字段pointer:1
 
 注意:
+
 	###与new不同,返回的变量不是指针.
 */
 func addressInitiate() {

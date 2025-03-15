@@ -19,15 +19,15 @@ import "fmt"
 
 
 */
-func main() {
+func main2() {
 	//简单的用一个自定义结构体,去实现一个自定义的接口.
 	SimepleImplement()
 }
 
 /*
 简单的用一个自定义结构体,去实现一个自定义的接口.
- */
-func SimepleImplement()  {
+*/
+func SimepleImplement() {
 	p := new(PrintImpl)
 	var printInterface Print
 	printInterface = p

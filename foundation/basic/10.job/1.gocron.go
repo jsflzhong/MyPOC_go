@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/claudiu/gocron"
 )
 
@@ -14,10 +15,10 @@ func main() {
 	gocron.Start()
 }
 
-func Job1()  {
+func Job1() {
 	fmt.Println("@@@Job1 is running...")
 }
 
-func Job2()  {
+func Job2() {
 	fmt.Println("@@@Job2 is running...")
 }

@@ -55,7 +55,7 @@ Go 方法是作用在接收器（receiver）上的一个函数，接收器是某
 	大对象因为复制性能较低，适合使用指针接收器，在接收器和参数间传递时不进行复制，只是传递指针。
 
 */
-func main() {
+func main3() {
 	receiver_pointer()
 
 	receiver_nonPointer()

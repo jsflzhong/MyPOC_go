@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"testing"
 )
 
 /*
@@ -49,7 +50,8 @@ Go语言希望开发者将错误处理视为正常开发"必须实现的环节"�
 	}
 	注意,Go中不叫Exception, 叫Error, 中文译为"错误".
 */
-func main() {
+func TestMainException(t *testing.T) {
+	fmt.Println("@@@@@@@1111111") // 用 fmt.Println 代替 t.Log
 	//使用error方式一: 自定义结构体实现error. 模仿errors包的实现原理: 自定义new方法 + 自定义结构体去实现上述error接口里的Error方法.
 	selfDefinedError("@@@test")
 

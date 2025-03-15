@@ -5,24 +5,29 @@ import (
 	"fmt"
 )
 
-/**
+/*
+*
 结构体和json之间的相互转换.
 内置API:
-		json->3_struct: jsonData, _ := json.Marshal(struct_)
-		3_struct->json: json.Unmarshal(jsonData, &struct_screenAndTouch)
+
+	json->3_struct: jsonData, _ := json.Marshal(struct_)
+	3_struct->json: json.Unmarshal(jsonData, &struct_screenAndTouch)
+
 注意:
+
 	反序列化可以只反序列化一部分,不用全字段.
 
 ###注意:
+
 	如果想让json.Marshal(Pojo)生效, 则结构体中的字段名要首大.
 
 结果:
+
 	@@@structToJason(): {"Size":5.5,"ResX":1920,"ResY":1080,"Capacity":2910,"HasTouchID":true}
 	@@@jsonToStruct():{Screen:{Size:5.5 ResX:1920 ResY:1080} HasTouchID:true}
 	@@@jsonToStruct2:{Battery:{Capacity:2910} HasTouchID:true}
-
 */
-func main() {
+func main5() {
 	//把结构体序列化为JSON
 	jsonData := structToJason()
 
@@ -43,23 +48,24 @@ func main() {
 在字段后加入 omitempty（使用逗号,与前面的内容分隔），来过滤掉转换的 JSON 格式中的空值
 
 运行结果:
-{
-    "Name":"cow boy",
-    "Age":37,
-    "Skills":[
-        {
-            "level":1	//注意,这里的空字段被忽略转换了.
-        },
-        {
-            "name":"Flash your dog eye",
-            "level":0
-        },
-        {
-            "name":"Time to have Lunch",
-            "level":3
-        }
-    ]
-}
+
+	{
+	    "Name":"cow boy",
+	    "Age":37,
+	    "Skills":[
+	        {
+	            "level":1	//注意,这里的空字段被忽略转换了.
+	        },
+	        {
+	            "name":"Flash your dog eye",
+	            "level":0
+	        },
+	        {
+	            "name":"Time to have Lunch",
+	            "level":3
+	        }
+	    ]
+	}
 */
 func filterOutNilValues() {
 	// 声明技能结构体
@@ -97,24 +103,25 @@ func filterOutNilValues() {
 使用关键字"json:xx"来改变 结构体->JSON 时的JSON中的key的名字.
 
 结果:
-{
-    "Name":"cow boy",
-    "Age":37,
-    "Skills":[
-        {
-            "name":"Roll and roll",
-            "level":1
-        },
-        {
-            "name":"Flash your dog eye",
-            "level":2
-        },
-        {
-            "name":"Time to have Lunch",
-            "level":3
-        }
-    ]
-}
+
+	{
+	    "Name":"cow boy",
+	    "Age":37,
+	    "Skills":[
+	        {
+	            "name":"Roll and roll",
+	            "level":1
+	        },
+	        {
+	            "name":"Flash your dog eye",
+	            "level":2
+	        },
+	        {
+	            "name":"Time to have Lunch",
+	            "level":3
+	        }
+	    ]
+	}
 */
 func changeJsonKeyName() {
 	// 声明技能结构体
@@ -192,7 +199,8 @@ func GenJsonData() []byte {
 	return jsonData
 }
 
-/**
+/*
+*
 把JSON反序列化为结构体(只取另一部分字段来反序列化)
 */
 func jsonToStruct2(jsonData []byte) {
@@ -207,7 +215,8 @@ func jsonToStruct2(jsonData []byte) {
 	fmt.Printf("@@@jsonToStruct2:%+v\n", batteryAndTouch)
 }
 
-/**
+/*
+*
 把JSON反序列化为结构体(只取部分字段来反序列化)
 */
 func jsonToStruct(jsonData []byte) {
@@ -222,7 +231,8 @@ func jsonToStruct(jsonData []byte) {
 	fmt.Printf("@@@jsonToStruct():%+v\n", struct_screenAndTouch)
 }
 
-/**
+/*
+*
 把结构体序列化为JSON
 */
 func structToJason() []byte {

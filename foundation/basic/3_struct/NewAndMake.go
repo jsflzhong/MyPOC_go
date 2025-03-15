@@ -16,7 +16,7 @@ Make:
 	new 分配返回的是指针，即类型 "*Type"。make 返回引用，即 "Type"；
 	new 分配的空间被清零。make 分配空间后，会进行初始化；
 */
-func main() {
+func main1() {
 
 	//new函数的应用
 	testNew()

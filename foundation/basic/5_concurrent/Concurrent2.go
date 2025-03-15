@@ -1,4 +1,4 @@
-package concurrency
+package main
 
 import (
 	"context"
@@ -7,7 +7,6 @@ import (
 	"sync/atomic"
 	"testing"
 	"time"
-	"testing"
 )
 
 // 1. Goroutine 示例
@@ -225,7 +224,7 @@ func TestPoolExample(t *testing.T) {
 
 func TestAtomicExample(t *testing.T) {
 	got := AtomicExample()
-	want := 5
+	var want int32 = 5
 	if got != want {
 		t.Errorf("got %d, want %d", got, want)
 	}

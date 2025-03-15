@@ -1,13 +1,14 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"goPOC/config"
-	"goPOC/controller/basic"
-	"goPOC/controller/kafka/confluent"
-	"goPOC/controller/nats"
-	"goPOC/model/db"
 	"log"
+	"mcgo/config"
+	"mcgo/controller/basic"
+	"mcgo/controller/kafka/confluent"
+	"mcgo/controller/nats"
+	"mcgo/model/db"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {

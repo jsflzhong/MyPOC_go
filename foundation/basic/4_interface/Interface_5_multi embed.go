@@ -13,7 +13,7 @@ import "io"
 
 
 */
-func main() {
+func main5() {
 	//接口内嵌接口
 	embedInterface()
 }
@@ -34,7 +34,7 @@ func embedInterface() {
 
 /*
 interface1
- */
+*/
 type Writer interface {
 	Write(p []byte) (n int, err error)
 }
@@ -57,7 +57,7 @@ type WriteCloser interface {
 /*
 声明一个结构体去实现上面接口1和接口2的函数.
 实现后, 它的实例就可以被接口3所引用.
- */
+*/
 type device struct {
 }
 
@@ -65,10 +65,8 @@ type device struct {
 func (d *device) Write(p []byte) (n int, err error) {
 	return 0, nil
 }
+
 // 实现io.Closer的Close()方法
 func (d *device) Close() error {
 	return nil
 }
-
-
-

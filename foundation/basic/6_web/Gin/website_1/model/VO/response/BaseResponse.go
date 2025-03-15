@@ -1,8 +1,8 @@
 package response
 
 import (
-	"goPOC/foundation/basic/6_web/Gin/website_1/common"
 	"encoding/json"
+	"mcgo/foundation/basic/6_web/Gin/website_1/common"
 	"net/http"
 )
 
@@ -13,10 +13,10 @@ type BaseResponse struct {
 	Data    string `json:"Data"`
 }
 
-//自定义状态码. 10001:未找到要查询的数据.
+// 自定义状态码. 10001:未找到要查询的数据.
 var noData = 10001
 
-func (baseResponse BaseResponse)Ok(data string) string {
+func (baseResponse BaseResponse) Ok(data string) string {
 	response := BaseResponse{
 		Code:    http.StatusOK,
 		Message: "success",
@@ -32,7 +32,7 @@ func (baseResponse BaseResponse)Ok(data string) string {
 	return string(marshal)
 }
 
-func (baseResponse BaseResponse)Error(errString string) string{
+func (baseResponse BaseResponse) Error(errString string) string {
 	response := BaseResponse{
 		Code:    http.StatusBadRequest,
 		Message: "Error",
@@ -49,7 +49,7 @@ func (baseResponse BaseResponse)Error(errString string) string{
 
 /*
 为找到要查询的资源. 外层用c.json(http.StatusOK, ...)返回了状态码200, 内层这里用前后端约定的状态码表示即可.
- */
+*/
 func (baseResponse BaseResponse) NoData(data string) string {
 	response := BaseResponse{
 		Code:    noData, //这里是约定的状态码.

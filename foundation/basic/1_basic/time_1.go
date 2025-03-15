@@ -17,7 +17,7 @@ time.UTC：UTC 时间
 time.Local：本地时间
 */
 
-func main() {
+func main14() {
 	//获取简单的当前时间, 年月日等.
 	getSimpleTime()
 
@@ -49,6 +49,7 @@ ParseInLocation 与 Parse 函数类似，但有两个重要的不同之处：
 第二，当时间字符串提供了时区偏移量信息时，Parse 会尝试去匹配本地时区，而 ParseInLocation 会去匹配 loc。
 
 结果:
+
 	2019-12-12 15:22:12 +0000 UTC
 	2019-12-12 15:22:12 +0800 CST
 */
@@ -66,6 +67,7 @@ func string2Time() {
 而是使用Go语言的诞生时间 2006 年 1 月 2 号 15 点 04 分 05 秒。
 
 结果:
+
 	2020-02-23 17:47:14.571 Sun Feb
 	2020-02-23 05:47:14.571 PM Sun Feb
 	2020/02/23 17:47
@@ -86,14 +88,17 @@ func formatTime() {
 
 /*
 Sub
+
 	求两个时间之间的差值：
 	func (t Time) Sub(u Time) Duration
 
 Equal
+
 	判断两个时间是否相同：
 	func (t Time) Equal(u Time) bool
 
 Before
+
 	判断一个时间点是否在另一个时间点之前：
 	func (t Time) Before(u Time) bool
 

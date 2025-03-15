@@ -6,13 +6,14 @@ package api
 import (
 	"database/sql"
 	"encoding/json"
-	"github.com/gin-gonic/gin"
-	"goPOC/foundation/basic/6_web/Gin/website_1/common"
-	"goPOC/foundation/basic/6_web/Gin/website_1/model"
-	"goPOC/foundation/basic/6_web/Gin/website_1/model/VO/response"
 	"log"
+	"mcgo/foundation/basic/6_web/Gin/website_1/common"
+	"mcgo/foundation/basic/6_web/Gin/website_1/model"
+	"mcgo/foundation/basic/6_web/Gin/website_1/model/VO/response"
 	"net/http"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
 )
 
 /**
@@ -28,7 +29,6 @@ import (
 	测试: http://localhost/v1/user/1
 
 	注意, handler(endpoint)的参数是需要符合接口规范的.
-
 */
 func GetUser(c *gin.Context) {
 	//1.获取request中的入参
@@ -83,14 +83,13 @@ func InsertUser(c *gin.Context) {
 }
 
 /*
-   3.endpoint: POST, 插入单个user.
+3.endpoint: POST, 插入单个user.
 
-   	url: v1/user/update
+	url: v1/user/update
 
-   	测试:
-   		http://localhost/v1/user/update
-   		PUT  {"uid":"8", "nick":"Michael5","Password":"125","Age":"15"}
-
+	测试:
+		http://localhost/v1/user/update
+		PUT  {"uid":"8", "nick":"Michael5","Password":"125","Age":"15"}
 */
 func UpdateUser(c *gin.Context) {
 	//把入参的JSON转换到结构体上. 入参中JSON的key,需要与User结构体中的字段后的'json'值一致.
@@ -109,13 +108,12 @@ func UpdateUser(c *gin.Context) {
 }
 
 /*
-   4.endpoint: DELETE, 删除单个user.
+4.endpoint: DELETE, 删除单个user.
 
-   	url: v1/user/delete/:id
+	url: v1/user/delete/:id
 
-   	测试:
-   		DELETE	 http://localhost/v1/user/delete/8
-
+	测试:
+		DELETE	 http://localhost/v1/user/delete/8
 */
 func DeleteUser(c *gin.Context) {
 	id := c.Param("id")

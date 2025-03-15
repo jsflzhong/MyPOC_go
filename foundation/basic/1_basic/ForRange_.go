@@ -24,7 +24,7 @@ import "fmt"
 	map 返回键和值。
 	通道（channel）只返回通道内的值。
 */
-func main() {
+func main4() {
 	testSimpleForRange()
 
 }

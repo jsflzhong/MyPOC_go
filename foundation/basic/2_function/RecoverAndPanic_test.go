@@ -3,14 +3,18 @@ package main
 import (
 	"fmt"
 	"runtime"
+	"testing"
 )
 
-/**
+/*
+*
 目的:
+
 	用recover()来抓住底层抛上来的panic宕机错误, 和运行时异常(例如空指针).
 	该机制类似try...catch.
 
 测试结果:
+
 	运行前
 	测试1:手动宕机前
 	@@@error: &{这是手动触发panic时抛向上层的结构体信息}
@@ -18,11 +22,12 @@ import (
 	@@@runtime error: runtime error: invalid memory address or nil pointer dereference
 	运行后
 */
-func main() {
+func TestMainRecoverAndPanic(t *testing.T) {
 	testRecoverAndPanic()
 }
 
-/**
+/*
+*
 测试用recovery在上层抓住: panic 和 运行时异常(例如空指针)
 */
 func testRecoverAndPanic() {

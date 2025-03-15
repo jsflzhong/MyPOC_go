@@ -2,14 +2,15 @@ package confluent
 
 import (
 	"fmt"
-	"github.com/confluentinc/confluent-kafka-go/kafka"
-	"github.com/gin-gonic/gin"
-	"goPOC/config"
 	"log"
+	"mcgo/config"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/confluentinc/confluent-kafka-go/kafka"
+	"github.com/gin-gonic/gin"
 )
 
 // ConfluentConsumer localhost/kafka/ConfluentConsumer

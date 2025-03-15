@@ -1,4 +1,4 @@
-module goPOC
+module mcgo
 
 go 1.17
 

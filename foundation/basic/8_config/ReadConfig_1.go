@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/fsnotify/fsnotify"
-	"github.com/fwhezfwhez/errorx"
-	"github.com/spf13/viper"
 	"log"
 	"os"
 	"sync"
 	"time"
+
+	"github.com/fsnotify/fsnotify"
+	"github.com/fwhezfwhez/errorx"
+	"github.com/spf13/viper"
 )
 
 /*
@@ -28,27 +29,27 @@ import (
 // ~/workspace_go/src/github.com/spf13/viper/viper.go:328
 var SupportedExts = []string{"json", "toml", "yaml", "yml", "properties", "props", "prop", "hcl", "dotenv", "env", "ini"}
 
-const ConfigJson  = "json"
-const ConfigYaml  = "yaml"
-const ConfigYml  = "yml"
-const ConfigProps  = "props"
-const ConfigProp  = "prop"
+const ConfigJson = "json"
+const ConfigYaml = "yaml"
+const ConfigYml = "yml"
+const ConfigProps = "props"
+const ConfigProp = "prop"
 
 var config *viper.Viper
-var m  sync.Mutex
+var m sync.Mutex
 
-func main() {
+func mainReadConfig_1() {
 
 	testReadConfig()
 }
 
 /*
 Init 初始化配置
- */
+*/
 func init() {
 	log.Println("@@@[init]Init config loader...")
 	var env string
-	if env = os.Getenv("ENV"); env=="" {
+	if env = os.Getenv("ENV"); env == "" {
 		env = "dev"
 	}
 	v := viper.New()
@@ -69,15 +70,15 @@ func init() {
 
 /*
 GetConfig 获取配置
- */
+*/
 func GetConfig() *viper.Viper {
 	return config
 }
 
 /*
 读取配置
- */
-func ReadConfig(v *viper.Viper) error{
+*/
+func ReadConfig(v *viper.Viper) error {
 	m.Lock()
 	defer m.Unlock()
 	err := v.ReadInConfig()
@@ -93,6 +94,7 @@ func ReadConfig(v *viper.Viper) error{
 热加载: 热加载是生效的. 但是如果是在golang里修改配置文件,需要ctrl+s保存一下,才能触发该监听事件.
 
 测试结果:
+
 	@@@配置文件中,key为addr的value为: 8090
 	@@@配置文件中,key为db.host的value为: localhost
 	@@@开始测试热加载,准备睡眠10秒...
@@ -103,7 +105,6 @@ func ReadConfig(v *viper.Viper) error{
 	@@@配置文件中,key为db.host的[热修改后的]value为: localhost1
 
 Process finished with exit code 0
-
 */
 func testReadConfig() {
 	c := GetConfig()

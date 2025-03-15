@@ -1,18 +1,19 @@
 package main
 
 import (
-	"awesomeProject/src/com.jsflzhong/6_web/Gin/website_1/api"
-	"awesomeProject/src/com.jsflzhong/6_web/Gin/website_1/api/kafka"
-	"awesomeProject/src/com.jsflzhong/6_web/Gin/website_1/handler"
 	"context"
-	"github.com/gin-gonic/gin"
 	"log"
+	"mcgo/foundation/basic/6_web/Gin/website_1/api" //第一段"mpoc/“要与哪里一致？ 与根目录下的文件"go.mod"里的第一行定义一致
+	"mcgo/foundation/basic/6_web/Gin/website_1/api/kafka"
+	"mcgo/foundation/basic/6_web/Gin/website_1/handler"
 	"net/http"
 	"os"
 	"os/signal"
 	"path/filepath"
 	"strings"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 const pathStatic = "D:/michael.cui/workspace_go/src/awesomeProject/src/com.jsflzhong/6_web/Gin/website_1/website/static"
@@ -20,7 +21,6 @@ const pathFavicon = "D:/michael.cui/workspace_go/src/awesomeProject/src/com.jsfl
 
 /*
 test:http://localhost/index.html
-
 */
 func main() {
 	//1.生成engine
@@ -53,6 +53,7 @@ func main() {
 
 这里的中间件, 是针对一个路由组全局生效的.
 如果想针对单个路由生效,则:
+
 	第二种: 针对单个endpoint生效的中间件的用法:
 	v1.GET("/user/:id/*action",setCors(), api.GetUser) //只针对一个目标endpoint.
 */
@@ -250,9 +251,8 @@ func configRequestType() {
 顺序问题: 中间件的调用顺序, 会按照这里的排列顺序进行.
 
 中间件实践:
+
 	中间件最大的作用，莫过于用于一些记录log，错误handler，还有就是对部分接口的鉴权, 验签等.
-
-
 */
 func useMiddleWare(routerGroup *gin.RouterGroup) {
 
@@ -305,8 +305,9 @@ func getCurrentDirectory() string {
 注意:router.StaticFS("/xxx,xxx) 这是个创建endpoint的API.第二参指定了当访问第一参时,映射到项目下的哪个路径下.
 
 测试:
-    http://localhost/public/images/1.png (等于访问pathStatic/images/1.png , 而pathStatic是上面定义的常量.)
-    http://localhost/favicon.ico (等于访问pathFavicon这个变量指定的文件)
+
+	http://localhost/public/images/1.png (等于访问pathStatic/images/1.png , 而pathStatic是上面定义的常量.)
+	http://localhost/favicon.ico (等于访问pathFavicon这个变量指定的文件)
 
 每次请求响应都会在服务端有日志产生，包括响应时间，加载资源名称，响应状态值等等。
 */

@@ -3,9 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"log"
 )
 
 // import _ "github.com/jinzhu/gorm/dialects/postgres"
@@ -64,19 +65,19 @@ func main() {
 	defer db.Close()
 
 	//insert
-	db.Create(&User{Name: "zhangSan", Age: 18,Sex:1,Phone:"13333333333"})
+	db.Create(&User{Name: "zhangSan", Age: 18, Sex: 1, Phone: "13333333333"})
 
 	//query
 	var user User
-	db.First(&user, 1)// 查询id为1的user
-	fmt.Println("@@@user1:",user)
-	db.First(&user, "name=?","zhangSan") //查询name为zhangsan的user.
-	fmt.Println("@@@user2:",user)
+	db.First(&user, 1) // 查询id为1的user
+	fmt.Println("@@@user1:", user)
+	db.First(&user, "name=?", "zhangSan") //查询name为zhangsan的user.
+	fmt.Println("@@@user2:", user)
 
 	//update
 	db.Model(&user).Update("phone", "13111111111")
 	db.First(&user, 1)
-	fmt.Println("@@@user1:",user)
+	fmt.Println("@@@user1:", user)
 
 	//delete
 	//db.Delete(&user)
@@ -99,7 +100,7 @@ func init() {
 	flag.Parse()
 
 	dbString := fmt.Sprintf("root:%s@tcp(%s:3306)/test2", *dbPassword, *dbUrl)
-	log.Println("@@@DBUrl=",dbString)
+	log.Println("@@@DBUrl=", dbString)
 	//":="只在当前方法内有效, 无法给全局变量赋值.需要改成"="
 	//否则下面引用全局变量时会报错: invalid memory address or nil pointer dereference
 	db, err = gorm.Open("mysql", dbString)
@@ -117,7 +118,7 @@ func init() {
 	//defer db.Close()
 }
 
-//插入数据
+// 插入数据
 func (user *User) Insert() {
 	//这里使用了Table()函数，如果你没有指定全局表名禁用复数，或者是表名跟结构体名不一样的时候
 	//你可以自己在sql中指定表名。这里是示例，本例中这个函数可以去除。

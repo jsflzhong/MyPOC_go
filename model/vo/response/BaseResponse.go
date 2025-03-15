@@ -2,7 +2,7 @@ package response
 
 import (
 	"encoding/json"
-	"goPOC/foundation/basic/6_web/Gin/website_1/common"
+	"mcgo/foundation/basic/6_web/Gin/website_1/common"
 	"net/http"
 )
 
@@ -13,7 +13,7 @@ type BaseResponse struct {
 	Data    string `json:"Data"`
 }
 
-//自定义状态码. 10001:未找到要查询的数据.
+// 自定义状态码. 10001:未找到要查询的数据.
 var noData = 10001
 
 func (baseResponse BaseResponse) Ok(data string) string {

@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func main5() {
 	fmt.Println("hello world!")
 
 	//Array
@@ -66,8 +66,8 @@ func main() {
 	var dog = "dog"
 	//使用 fmt.Printf 的动词%p打印 cat 和 str 变量的内存地址，指针的值是带有0x十六进制前缀的一组数据。
 	//注意在变量前加"&", 表示拿的不是变量的值,而是其内存地址.
-	fmt.Printf("取地址: %p \n", &cat)  //%p 用来打印格式化的地址
-	pointer := &dog //这里用来接&地址的pointer是个指针类型的变量, 而不是普通的变量
+	fmt.Printf("取地址: %p \n", &cat) //%p 用来打印格式化的地址
+	pointer := &dog                //这里用来接&地址的pointer是个指针类型的变量, 而不是普通的变量
 	//注意在变量前加"*", 表示拿的不是变量的内存地址,而是其值.
 	fmt.Printf("用指针取值: %s \n", *pointer) //%s 用来打印格式化的值
 	fmt.Printf("用来接地址的变量pointer的类型是指针! : %T \n", pointer)

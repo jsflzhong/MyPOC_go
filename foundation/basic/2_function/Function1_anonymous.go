@@ -18,7 +18,7 @@ Go语言里面拥三种类型的函数：
 	但是，如果实参包括引用类型，如指针、slice(切片)、map、2_function、channel 等类型，实参可能会由于函数的间接引用被修改。
 
 */
-func main() {
+func mainAnoymous() {
 	NormalFunction()
 
 	testAnonymousFunction()

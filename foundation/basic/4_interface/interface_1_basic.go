@@ -27,9 +27,7 @@ package main
 	}
 	Stringer 接口在Go语言中的使用频率非常高，功能类似于 Java 或者 C# 语言里的 ToString 的操作。
 
- */
-func main() {
+*/
+func main1() {
 
 }
-
-
