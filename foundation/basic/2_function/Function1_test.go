@@ -7,11 +7,13 @@ import (
 /*
 要开始一个"单元测试"，需要准备一个 go 源码文件，在命名文件时文件名必须以"_test.go"结尾，
 单元测试源码文件可以由多个测试用例（可以理解为函数）组成，每个测试用例的名称需要以 Test 为前缀，例如：
+
 	func TestXxx( t *testing.T ){
 		//......
 	}
 
 编写测试用例有以下几点需要注意：
+
 	测试用例文件不会参与正常源码的编译，不会被包含到可执行文件中；
 	测试用例的文件名必须以_test.go结尾；
 	需要使用 import 导入 "testing" 包；
@@ -21,23 +23,30 @@ import (
 	测试用例文件使用"go test"命令来执行，源码中不需要 main() 函数作为入口，所有以_test.go结尾的源码文件内以Test开头的函数都会自动执行。
 
 Go语言的 testing 包提供了三种测试方式，分别是:
+
 	单元（功能）测试、性能（压力）测试和覆盖率测试。
 
-
 打印日志：
-	go test 默认 只打印失败的测试信息，不会显示 fmt.Println 的输出。
-	你的 TestMainException 没有使用 t.Fail 或 t.Errorf 触发失败，因此 go test 认为测试通过，最终不会显示 fmt.Println 的输出。
-	go test 运行时会捕获标准输出，除非使用 -v 参数，否则不会显示 fmt.Println 的内容。
 
-	方案1： (加 -v)
-	go test -v -run ^TestMainException$
+	默认情况下，t.Log 只有在 go test -v 模式下才会显示。
+	fmt.Println 在 go test 运行时，默认被吞掉，不会显示，因为 Go 运行测试时会捕获标准输出，只有失败时才可能打印。
+	VS Code 运行 go test 时默认不加 -v，导致 t.Log 也不会输出。
 
-	方案2：（使用 t.Log） (Log首字母是大写的！)
-	t.Log("@@@@@@@1111111") // 使用 t.Log 代替 fmt.Println
+	方案 1：VS Code 里启用 -v
+		VS Code 默认不会加 -v，可以手动修改：
 
-	你的 t.Log("@@@@@@@1111111") 没有打印，可能是因为 Go 测试框架的日志默认不会在 成功的测试 中显示。
-	Go 的 testing.T.Log 只有在 测试失败 或者 使用 go test -v 运行时 才会输出日志。
-*/
+		打开 VS Code 设置 (Ctrl + ,)
+		搜索 Go Test Flags
+
+		添加 -v 选项：
+		["-v"]
+		(那个设置里有中括号了, 不要再输入中括号)
+
+	方案2: 直接指定目标单文件的全路径名:
+		go test -v -run TestJusttest D:\code\MyCode\MC_go\foundation\basic\2_function\test_test.go
+
+	方案2: 直接指定目标单文件夹, 应该是一次性把该路径下的所有test文件全执行了:
+		在根目录: go test -v -run TestJusttest ./foundation/basic/2_function
 
 /*
 1.单元（功能）测试

@@ -43,7 +43,7 @@ func testAnonymousFunction() {
 
 func NormalFunction() int {
 	testMultiReturnValue()
-	return 1
+	return 2
 }
 
 /*
